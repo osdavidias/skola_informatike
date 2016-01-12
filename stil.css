@@ -1,0 +1,120 @@
+h1{
+    color: blue;
+}
+#on{
+
+	background-color: #E6E6E6;
+	font-size: 20px;
+    padding-bottom: 25%;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+
+li a:hover {
+    background-color: #111;
+}
+.active {
+    background-color: #4CAF50;
+}
+
+.dugme {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+ }
+.slika
+{
+    display: block;
+    height: 200px;
+    width: 170px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.polaznik
+{
+    text-align: center;
+}
+
+.tablica
+{
+display: block;
+margin-left: auto;
+margin-right: auto;    
+border-collapse: collapse;
+}
+tr,th {
+    background-color: #E6E6E6;
+    font-size: 20px; 
+}
+
+ #featured { 
+          width: 940px;
+          height: 450px;
+           background: #000 url('orbit/loading.gif') no-repeat center center; overflow: hidden; }
+     #featured img,  
+     #featured div { display: none; }
+
+
+/* Minimus slider */
+
+.minimus-slider {
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+}
+
+.minimus-slide {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.minimus-navslide {
+/* style as you wish, this is only an example */
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+.minimus-navslide span {
+    position: relative;
+    cursor: pointer;    
+}
+                        
+.minimus-caption {
+/* style as you wish, this is only an example */
+    position: absolute;
+    bottom: -2.625em;
+    width: 100%;
+    background: rgba(20,20,20,0.7);
+    color: #f7f7f7;
+    border: none;
+    border-top: 1px solid #404040;
+}
+
