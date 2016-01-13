@@ -92,19 +92,20 @@ $password=ciscenje($_POST["password"]);
 $potvrda=ciscenje($_POST["potvrda"]);
 $tecaj=$_POST["tecaj"];
 
-function nije_prazno($a)
+function nije_prazno()
 {
-  //for ($i=0; $i<func_num_args(); $i++) { 
-  if (empty($a)) {
-    return 0;
-  }
-    else {
-      return 1;
+  
+  $par=func_get_args();
+  foreach ($par as $key => $value) {
+    if (empty($value)) {
+      return 0;
     }
-  //}
-  }  
 
-if (nije_prazno($ime, $prezime, $adresa, $mjesto, $slika, $mail, $username, $password, $potvrda, $tecaj)== 1
+  }
+
+}
+
+if (nije_prazno($ime, $prezime, $adresa, $mjesto, $slika, $mail, $username, $password, $potvrda, $tecaj)!== 0
 	AND $password==$potvrda)
 {
 	
