@@ -52,7 +52,7 @@ $stmt->execute();
 $rezultat=$stmt->fetchAll(PDO::FETCH_OBJ);
 if (empty($rezultat) OR !$rezultat)
  {
-	echo 'Pogrešno korisničko ime ili lozinka!';
+	echo '<div class="krivo">Pogrešno korisničko ime ili lozinka!</div>';
 }
 	
 else 

@@ -48,42 +48,18 @@
 
 <?php
 include "connection.php";
-$n1="PHP";
-$n2="C#";
-$n3="Java";
 
-// za PHP polaznike
-$pdo = new PDO ("mysql:host=$host; dbname=$baza", $user, $pass);
-$query= "SELECT COUNT(br_polaznika) AS broj FROM polaznici JOIN predavaci ON polaznici.tecaj=predavaci.br_predavaca
-WHERE naziv_tecaja LIKE ?";
-$stmt=$pdo->prepare($query);
-$stmt->bindParam(1, $n1);
-$stmt->execute();
-$result=$stmt->fetch(PDO::FETCH_OBJ);
-$a=$result->broj; 
-unset($pdo);
 
-// za #C polaznike
-$pdo = new PDO ("mysql:host=$host; dbname=$baza", $user, $pass);
-$query= "SELECT COUNT(br_polaznika) AS broj FROM polaznici JOIN predavaci ON polaznici.tecaj=predavaci.br_predavaca
-WHERE naziv_tecaja LIKE ?";
-$stmt=$pdo->prepare($query);
-$stmt->bindParam(1, $n2);
-$stmt->execute();
-$result=$stmt->fetch(PDO::FETCH_OBJ);
-$b=$result->broj; 
-unset($pdo);
 
-// za Java polaznike
 $pdo = new PDO ("mysql:host=$host; dbname=$baza", $user, $pass);
-$query= "SELECT COUNT(br_polaznika) AS broj FROM polaznici JOIN predavaci ON polaznici.tecaj=predavaci.br_predavaca
-WHERE naziv_tecaja LIKE ?";
+$query= "SELECT naziv_tecaja, COUNT(br_polaznika) AS broj FROM polaznici JOIN predavaci ON polaznici.tecaj=predavaci.br_predavaca
+GROUP BY naziv_tecaja";
 $stmt=$pdo->prepare($query);
-$stmt->bindParam(1, $n3);
+
 $stmt->execute();
-$result=$stmt->fetch(PDO::FETCH_OBJ);
-$c=$result->broj; 
-unset($pdo);
+$result=$stmt->fetchAll(PDO::FETCH_OBJ);
+
+
 ?>
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -102,15 +78,21 @@ unset($pdo);
         data.addColumn('number', 'Slices');
         data.addRows([
           <?php
-          echo "['".$n1."',".$a."],";
-          echo "['".$n2."',".$b."],";
-          echo "['".$n3."',".$c."]";
+          foreach ($result as $key => $v)
+
+        {
+
+          echo "['".$v->naziv_tecaja."',".$v->broj."],";
+
+
+          }
+          
           ?>
          
         ]);
 
        
-        var options = {'title':'Broj polaznika po programu obrazovanja',
+        var options = {'title':'Broj polaznika po programu obrazovanja:',
                        'width':400,
                        'height':300};
 

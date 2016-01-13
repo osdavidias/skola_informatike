@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `polaznici` (
   UNIQUE KEY `username` (`username`),
   KEY `tecaj` (`tecaj`),
   CONSTRAINT `FK_polaznici_predavaci` FOREIGN KEY (`tecaj`) REFERENCES `predavaci` (`br_predavaca`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table skola_informatike.polaznici: ~4 rows (approximately)
 /*!40000 ALTER TABLE `polaznici` DISABLE KEYS */;
@@ -40,7 +40,10 @@ INSERT INTO `polaznici` (`br_polaznika`, `ime`, `prezime`, `adresa`, `mjesto`, `
 	(5, 'Ivo', 'Ivić', 'Visoka 16', 'Osijek', 'cov2.jpg', 'ivo@hotmail.com', 'ivkan', '81dc9bdb52d04dc20036dbd8313ed055', 2),
 	(6, 'Ana', 'Anić', 'Strossmayerova 120', 'Osijek', 'cura.jpg', 'ana.anic@net.hr', 'ana1', 'b59c67bf196a4758191e42f76670ceba', 1),
 	(7, 'Darko', 'Darkić', 'Neka 124', 'Osijek', 'bean.jpg', 'darkod@gmail.com', 'dark', 'e2fc714c4727ee9395f324cd2e7f331f', 1),
-	(8, 'Crnko', 'Crnić', 'Strma 45', 'Osijek', 'neki.jpg', 'ccrni@mail.com', 'crni', '4a7d1ed414474e4033ac29ccb8653d9b', 3);
+	(8, 'Crnko', 'Crnić', 'Strma 45', 'Osijek', 'neki.jpg', 'ccrni@mail.com', 'crni', '4a7d1ed414474e4033ac29ccb8653d9b', 3),
+	(9, 'Hrvoje', 'Horvat', 'Trg 5', 'Osijek', 'vlcsnap-2015-12-26-11h16m04s184.png', 'hhorvat@mail.net', 'hhorvat', 'fa246d0262c3925617b0c72bb20eeb1d', 1),
+	(11, 'Mara', 'Marić', 'Duga 76', 'Osijek', 'zena.jpg', 'mmaric@net.hr', 'mmaric', '9de37a0627c25684fdd519ca84073e34', 2),
+	(12, 'Bubi', 'Bubić', 'Neka 465', 'Čepin', 'imagesRK217JZZ.jpg', 'bubi@gmail.com', 'bubi', '2e6f58aa72e1ca7a7dc41a417b2d4009', 1);
 /*!40000 ALTER TABLE `polaznici` ENABLE KEYS */;
 
 

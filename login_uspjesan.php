@@ -70,7 +70,57 @@ echo '<td>'.$rezultat->naziv_tecaja.'</td>';
 echo '</tr>';
 echo '</table>';
 
+echo '<br><b>Promijeni lozinku:</b>';
+echo '<form method="post">';
+echo '<br>Stara lozinka:<br>';
+echo '<input type="password" name="stara"><br>';
+echo 'Nova loznika:<br>';
+echo '<input type="password" name="nova"><br>';
+echo 'Potvrdi novu lozinku:<br>';
+echo '<input type="password" name="potvrda">'; 
+echo '<br><input class="dugme" type="submit" name="dugme" value="Promijeni">';
+echo '</form>';
+
+if (isset($_POST["dugme"])) {
+
+function ciscenje($a)
+{
+$a=mysql_real_escape_string($a);
+$a=stripslashes($a);
+return $a;
 }
+$stara=ciscenje($_POST["stara"]);
+$nova=ciscenje($_POST["nova"]);
+$potvrda=ciscenje($_POST["potvrda"]);
+
+//provjera lozinke
+if (!empty($stara) & !empty($nova) & !empty($potvrda)
+AND md5($stara==$_SESSION["pass"]) AND $nova==$potvrda) {
+
+$nova=md5($nova);
+ 
+
+$pdo = NEW pdo ("mysql:host=$host; dbname=$baza", $user, $pass);
+$query="UPDATE polaznici SET password = ? WHERE username = ? AND password= ? ";
+$stmt=$pdo->prepare($query);
+$stmt->bindParam(1, $nova);
+$stmt->bindParam(2, $_SESSION["user"]);
+$stmt->bindParam(3, $_SESSION["pass"]);
+$stmt->execute();
+unset($pdo);  
+
+ $_SESSION["pass"]=$nova;
+ echo '<div class="dobro">Lozinka uspješno promijenjena!</div>';
+}//kraj uvjeta za provjeru lozinke
+
+else
+{
+  echo '<div class="krivo">Krivo ste unijeli lozinku!</div>';
+}
+
+}// kraj uvjeta za dugme
+
+}// kraj uvjeta za postavljeni session [user]
 
 ?>
 

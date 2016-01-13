@@ -43,7 +43,9 @@ Korisničko ime:<br>
 <input type="text" name="username"><br>
 Lozinka:<br>
 <input type="password" name="password"><br>
-Tečaj:
+Potvrdi lozinku:<br>
+<input type="password" name="potvrda"><br>
+Tečaj:<br>
 <select name="tecaj">
 <?php
 include "connection.php";
@@ -69,10 +71,7 @@ unset($pdo);
 
 <?php
 if (isset($_POST["dugme"])) {
-$uploaddir='C:/xampp/htdocs/test/skola_informatike/slike/';
-$uploadfile=$_FILES["slika"]["name"];
-$novi=$uploaddir.$uploadfile;
-move_uploaded_file($_FILES["slika"]["tmp_name"], $novi);	
+	
 
 function ciscenje($a)
 {
@@ -90,7 +89,29 @@ $slika=$_FILES["slika"]["name"];
 $mail=ciscenje($_POST["mail"]);
 $username=ciscenje($_POST["username"]);
 $password=ciscenje($_POST["password"]);
+$potvrda=ciscenje($_POST["potvrda"]);
 $tecaj=$_POST["tecaj"];
+
+function nije_prazno($a)
+{
+  //for ($i=0; $i<func_num_args(); $i++) { 
+  if (empty($a)) {
+    return 0;
+  }
+    else {
+      return 1;
+    }
+  //}
+  }  
+
+if (nije_prazno($ime, $prezime, $adresa, $mjesto, $slika, $mail, $username, $password, $potvrda, $tecaj)== 1
+	AND $password==$potvrda)
+{
+	
+$uploaddir='C:/xampp/htdocs/test/skola_informatike/slike/';
+$uploadfile=$_FILES["slika"]["name"];
+$novi=$uploaddir.$uploadfile;
+move_uploaded_file($_FILES["slika"]["tmp_name"], $novi);
 
 $password = md5($password);
 
@@ -114,13 +135,16 @@ unset($pdo);
 
 
 
+echo '<div class="dobro">Podaci uspješno unijeti!</div>';
+}// kraj provjere varijabli
+
+else 
+{
+	echo '<b><div class="krivo">Niste dobro unijeli lozinku ili neko od traženih polja!</div></b>';
+}	
 
 
-
-
-
-
-}
+}// kraj if isset dugme
 
 
 

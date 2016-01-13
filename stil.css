@@ -79,42 +79,15 @@ tr,th {
      #featured div { display: none; }
 
 
-/* Minimus slider */
-
-.minimus-slider {
-    position: relative;
-    margin: 0 auto;
-    padding: 0;
-    overflow: hidden;
+.dobro{
+    font-style: bold;
+    background-color: green;
+    font-size: 20;
 }
 
-.minimus-slide {
-    position: absolute;
-    left: 0;
-    top: 0;
+.krivo{
+   font-style: bold;
+   font-size: 20;
+   background-color: red;
+    
 }
-
-.minimus-navslide {
-/* style as you wish, this is only an example */
-    position: relative;
-    margin: 0 auto;
-    padding: 0;
-    width: 100%;
-    text-align: center;
-}
-.minimus-navslide span {
-    position: relative;
-    cursor: pointer;    
-}
-                        
-.minimus-caption {
-/* style as you wish, this is only an example */
-    position: absolute;
-    bottom: -2.625em;
-    width: 100%;
-    background: rgba(20,20,20,0.7);
-    color: #f7f7f7;
-    border: none;
-    border-top: 1px solid #404040;
-}
-
