@@ -6,6 +6,7 @@ h1{
 	background-color: #E6E6E6;
 	font-size: 20px;
     padding-bottom: 25%;
+    border: 1px groove #aaaaaa;
 }
 
 ul {
@@ -90,4 +91,21 @@ tr,th {
    font-size: 20;
    background-color: red;
     
+}
+
+#footer
+{
+    clear: both;
+    font-size: 16;
+    border: 1px groove #aaaaaa;
+    background: #E6E6E6;
+    padding-top: 2;
+    padding-bottom: 2;
+    text-align: center;
+    vertical-align: middle;
+    line-height: normal;
+    margin: 0;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
 }

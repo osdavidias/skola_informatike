@@ -71,6 +71,7 @@ unset($pod);
 
 ?>
 
+<div id="footer">© Škola informatike </div>
 </body>
 
 

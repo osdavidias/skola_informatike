@@ -37,14 +37,14 @@
 Mi smo škola suvremenih informatičkih znanja i metoda.
 Godinama naš stručnan i kompetentan tim predavača podučava polaznike najsuvremenijim trendovima
 i znanjima iz područja programiranja i računalnih tehnologija.
-Obratite nam se s povjerenjem.
+<br>Obratite nam se s povjerenjem.
 
 </div>
 
 
 
 
-
+<div id="footer">© Škola informatike </div>
 </body>
 
 

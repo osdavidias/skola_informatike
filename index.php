@@ -31,15 +31,34 @@
 <br>
 
 <!-- slider sa slikama -->
+<?php
+include 'connection.php';
+
+$pdo=new PDO ("mysql:host=$host; dbname=$baza", $user, $pass);
+$query="SELECT * FROM predavaci";
+$stmt=$pdo->prepare($query);
+$stmt->execute();
+$rezultat=$stmt->fetchAll(PDO::FETCH_OBJ);
+
+
+?>
 <h3>Naši profesori:</h3> 
 <div id="featured"> 
-     <img src="slike/pre1.jpg" alt="Pero Perić" />
-     <img src="slike/pre2.jpg"  alt="Jure Jurić" />
-     <img src="slike/pre3.jpg" alt="Miki Mikić" />
+  <?php
+  foreach ($rezultat as $key => $value) {
+    
+  echo '<img src="slike/'.$value->slika_predavaca.'" alt="'.$value->ime_predavaca.'" data-caption="#htmlCaption'.$value->br_predavaca.'" />';
+     
+     }
+     ?>
 </div>
-
-
-
+<?php
+foreach ($rezultat as $key => $value) {
+ 
+echo '<span class="orbit-caption" id="htmlCaption'.$value->br_predavaca.'">'.$value->ime_predavaca." ".$value->prezime_predavaca.'</span>';
+}
+unset($pdo);
+?>
 
   
 
@@ -47,7 +66,7 @@
 <!-- Pie google charts grafički prikaz:  -->
 
 <?php
-include "connection.php";
+
 
 
 
@@ -113,11 +132,13 @@ $result=$stmt->fetchAll(PDO::FETCH_OBJ);
 <script type="text/javascript">
      $(window).load(function() {
          $('#featured').orbit({
-              bullets: true
+              bullets: true,
+              captions: true
          });
      });
 </script>
 
+<div id="footer">© Škola informatike </div>
 </body>
 
 
