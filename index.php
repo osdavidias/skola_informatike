@@ -34,7 +34,7 @@
 <?php
 include 'connection.php';
 
-$pdo=new PDO ("mysql:host=$host; dbname=$baza", $user, $pass);
+$pdo=new PDO ("mysql:host=$host; dbname=$baza", $user, $pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 $query="SELECT * FROM predavaci";
 $stmt=$pdo->prepare($query);
 $stmt->execute();
@@ -70,7 +70,7 @@ unset($pdo);
 
 
 
-$pdo = new PDO ("mysql:host=$host; dbname=$baza", $user, $pass);
+$pdo = new PDO ("mysql:host=$host; dbname=$baza", $user, $pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 $query= "SELECT naziv_tecaja, COUNT(br_polaznika) AS broj FROM polaznici JOIN predavaci ON polaznici.tecaj=predavaci.br_predavaca
 GROUP BY naziv_tecaja";
 $stmt=$pdo->prepare($query);

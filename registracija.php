@@ -52,7 +52,7 @@ Tečaj:<br>
 <select name="tecaj">
 <?php
 include "connection.php";
-$pdo=new PDO ("mysql:host=$host; dbname=$baza", $user, $pass);
+$pdo=new PDO ("mysql:host=$host; dbname=$baza", $user, $pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 $query="SELECT * FROM predavaci";
 $stmt=$pdo->query($query);
 $rezultat=$stmt->fetchAll(PDO::FETCH_OBJ);

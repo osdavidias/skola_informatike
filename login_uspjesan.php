@@ -45,7 +45,7 @@ echo
 echo '<h2 class="polaznik">Podaci o polazniku:</h2>';
 
 
-$pdo = new PDO ("mysql:host=$host; dbname=$baza", $user, $pass);
+$pdo = new PDO ("mysql:host=$host; dbname=$baza", $user, $pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 $query="SELECT * FROM polaznici JOIN predavaci ON polaznici.tecaj=predavaci.br_predavaca WHERE username=? AND password = ?";
 $stmt=$pdo->prepare($query);
 $stmt->bindParam(1, $_SESSION["user"]);
