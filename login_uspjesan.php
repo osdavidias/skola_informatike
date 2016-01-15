@@ -1,6 +1,11 @@
 <!Doctype-HTML>
 <html>
 <head>
+
+<title>Škola informatike</title>
+<meta name="description" content="Obrazovanje i podučavanje informatičkih tehnologija u programiranja">
+<meta name="keywords" content="škola, obrazovanje, programiranje, poduka">
+<meta charset="UTF-8"> 
 <link rel="stylesheet" type="text/css" href="stil.css">
 
 </head>
@@ -83,29 +88,25 @@ echo '</form>';
 
 if (isset($_POST["dugme"])) {
 
-function ciscenje($a)
-{
-$a=mysql_real_escape_string($a);
-$a=stripslashes($a);
-return $a;
-}
-$stara=ciscenje($_POST["stara"]);
-$nova=ciscenje($_POST["nova"]);
-$potvrda=ciscenje($_POST["potvrda"]);
+
+$stara=$_POST["stara"];
+$nova=$_POST["nova"];
+$potvrda=$_POST["potvrda"];
 
 //provjera lozinke
 if (!empty($stara) & !empty($nova) & !empty($potvrda)
 AND md5($stara==$_SESSION["pass"]) AND $nova==$potvrda) {
 
-$nova=md5($nova);
+
  
 
 $pdo = NEW pdo ("mysql:host=$host; dbname=$baza", $user, $pass);
 $query="UPDATE polaznici SET password = ? WHERE username = ? AND password= ? ";
 $stmt=$pdo->prepare($query);
-$stmt->bindParam(1, $nova);
+$stmt->bindParam(1, $nova, PDO::PARAM_STR);
 $stmt->bindParam(2, $_SESSION["user"]);
 $stmt->bindParam(3, $_SESSION["pass"]);
+$nova=md5($nova);
 $stmt->execute();
 unset($pdo);  
 

@@ -2,7 +2,10 @@
 <html>
 <head>
 
-
+<title>Škola informatike</title>
+<meta name="description" content="Obrazovanje i podučavanje informatičkih tehnologija u programiranja">
+<meta name="keywords" content="škola, obrazovanje, programiranje, poduka">
+<meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="stil.css">
 
 </head>
@@ -73,23 +76,17 @@ unset($pdo);
 if (isset($_POST["dugme"])) {
 	
 
-function ciscenje($a)
-{
-$a=mysql_real_escape_string($a);
-$a=stripslashes($a);
-return $a;
 
-}
 
-$ime=ciscenje($_POST["ime"]);
-$prezime=ciscenje($_POST["prezime"]);
-$adresa=ciscenje($_POST["adresa"]);
-$mjesto=ciscenje($_POST["mjesto"]);
+$ime=$_POST["ime"];
+$prezime=$_POST["prezime"];
+$adresa=$_POST["adresa"];
+$mjesto=$_POST["mjesto"];
 $slika=$_FILES["slika"]["name"];
-$mail=ciscenje($_POST["mail"]);
-$username=ciscenje($_POST["username"]);
-$password=ciscenje($_POST["password"]);
-$potvrda=ciscenje($_POST["potvrda"]);
+$mail=$_POST["mail"];
+$username=$_POST["username"];
+$password=$_POST["password"];
+$potvrda=$_POST["potvrda"];
 $tecaj=$_POST["tecaj"];
 
 function nije_prazno()
@@ -114,21 +111,22 @@ $uploadfile=$_FILES["slika"]["name"];
 $novi=$uploaddir.$uploadfile;
 move_uploaded_file($_FILES["slika"]["tmp_name"], $novi);
 
-$password = md5($password);
+
 
 $pdo = new PDO ("mysql:host=$host; dbname=$baza", $user, $pass);
 $query="INSERT INTO polaznici (ime, prezime, adresa, mjesto, slika, mail, username, password, tecaj)";
 $query.="VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt=$pdo->prepare($query);
-$stmt->bindParam(1, $ime);
-$stmt->bindParam(2, $prezime);
-$stmt->bindParam(3, $adresa);
-$stmt->bindParam(4, $mjesto);
+$stmt->bindParam(1, $ime, PDO::PARAM_STR);
+$stmt->bindParam(2, $prezime, PDO::PARAM_STR);
+$stmt->bindParam(3, $adresa, PDO::PARAM_STR);
+$stmt->bindParam(4, $mjesto, PDO::PARAM_STR);
 $stmt->bindParam(5, $slika);
-$stmt->bindParam(6, $mail);
-$stmt->bindParam(7, $username);
-$stmt->bindParam(8, $password);
+$stmt->bindParam(6, $mail, PDO::PARAM_STR);
+$stmt->bindParam(7, $username, PDO::PARAM_STR);
+$stmt->bindParam(8, $password, PDO::PARAM_STR);
 $stmt->bindParam(9, $tecaj);
+$password = md5($password);
 $stmt->execute();
 unset($pdo);
 

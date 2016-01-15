@@ -2,6 +2,11 @@
 
 <html>
 <head>
+
+<title>Škola informatike</title>
+<meta name="description" content="Obrazovanje i podučavanje informatičkih tehnologija u programiranja">
+<meta name="keywords" content="škola, obrazovanje, programiranje, poduka">
+<meta charset="UTF-8">	
 <link rel="stylesheet" type="text/css" href="stil.css">
 
 </head>
@@ -36,17 +41,14 @@ if (isset($_POST["posalji"])) {
 $korisnik=$_POST["korisnik"];
 $lozinka=$_POST["lozinka"];
 
-$korisnik=stripslashes($korisnik);
-$lozinka=stripslashes($lozinka);
-$korisnik=mysql_real_escape_string($korisnik);
-$lozinka=mysql_real_escape_string($lozinka);
-$lozinka=md5($lozinka);
+
 
 $pdo = new PDO ("mysql:host=$host; dbname=$baza", $user, $pass);
 $query="SELECT * FROM polaznici WHERE username= ? AND password= ?";
 $stmt=$pdo->prepare($query);
-$stmt->bindParam(1, $korisnik);
-$stmt->bindParam(2, $lozinka);
+$stmt->bindParam(1, $korisnik, PDO::PARAM_STR);
+$stmt->bindParam(2, $lozinka, PDO::PARAM_STR);
+$lozinka=md5($lozinka);
 $stmt->execute();
 
 $rezultat=$stmt->fetchAll(PDO::FETCH_OBJ);
