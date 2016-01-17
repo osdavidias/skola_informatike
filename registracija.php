@@ -1,4 +1,4 @@
-<!Doctype-html>
+﻿<!Doctype-html>
 <html>
 <head>
 
@@ -31,19 +31,38 @@
 <form method="post" enctype="multipart/form-data">
 
 Ime:<br>
-<input type="text" name="ime"><br>
+<input type="text" name="ime"
+value="<?php if(!empty($_POST['ime']))
+{
+ echo $_POST['ime'];
+} ?>" ><br>
 Prezime:<br>
-<input type="text" name="prezime"><br>
+<input type="text" name="prezime" value="<?php if(!empty($_POST['prezime']))
+{
+ echo $_POST['prezime'];
+} ?>"><br>
 Adresa:<br>
-<input type="text" name="adresa"><br>
+<input type="text" name="adresa" value="<?php if(!empty($_POST['adresa']))
+{
+ echo $_POST['adresa'];
+} ?>"><br>
 Mjesto:<br>
-<input type="text" name="mjesto"><br>
+<input type="text" name="mjesto" value="<?php if(!empty($_POST['adresa']))
+{
+ echo $_POST['adresa'];
+} ?>"><br>
 Slika<br>
 <input type="file" name="slika"><br>
 Email:<br>
-<input type="text" name="mail"><br>
+<input type="text" name="mail" value="<?php if(!empty($_POST['mail']))
+{
+ echo $_POST['mail'];
+} ?>"><br>
 Korisničko ime:<br>
-<input type="text" name="username"><br>
+<input type="text" name="username" value="<?php if(!empty($_POST['username']))
+{
+ echo $_POST['username'];
+} ?>"><br>
 Lozinka:<br>
 <input type="password" name="password"><br>
 Potvrdi lozinku:<br>
@@ -57,8 +76,8 @@ $query="SELECT * FROM predavaci";
 $stmt=$pdo->query($query);
 $rezultat=$stmt->fetchAll(PDO::FETCH_OBJ);
 foreach ($rezultat as $key => $value) {
-	 echo '<option value="'.$value->br_predavaca.'">'.$value->naziv_tecaja.", ".$value->ime_predavaca." ".$value->prezime_predavaca;
-	 echo '</option>';
+   echo '<option value="'.$value->br_predavaca.'">'.$value->naziv_tecaja.", ".$value->ime_predavaca." ".$value->prezime_predavaca;
+   echo '</option>';
 
 }
 unset($pdo);
@@ -113,7 +132,7 @@ move_uploaded_file($_FILES["slika"]["tmp_name"], $novi);
 
 
 
-$pdo = new PDO ("mysql:host=$host; dbname=$baza", $user, $pass);
+$pdo = new PDO ("mysql:host=$host; dbname=$baza", $user, $pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 $query="INSERT INTO polaznici (ime, prezime, adresa, mjesto, slika, mail, username, password, tecaj)";
 $query.="VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt=$pdo->prepare($query);
