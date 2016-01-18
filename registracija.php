@@ -1,4 +1,4 @@
-﻿<!Doctype-html>
+<!Doctype-html>
 <html>
 <head>
 
@@ -93,7 +93,7 @@ unset($pdo);
 
 <?php
 if (isset($_POST["dugme"])) {
-	
+  
 
 
 
@@ -101,7 +101,7 @@ $ime=$_POST["ime"];
 $prezime=$_POST["prezime"];
 $adresa=$_POST["adresa"];
 $mjesto=$_POST["mjesto"];
-$slika=$_FILES["slika"]["name"];
+$slika=date("ymdhs").$_FILES["slika"]["name"];
 $mail=$_POST["mail"];
 $username=$_POST["username"];
 $password=$_POST["password"];
@@ -122,12 +122,12 @@ function nije_prazno()
 }
 
 if (nije_prazno($ime, $prezime, $adresa, $mjesto, $slika, $mail, $username, $password, $potvrda, $tecaj)!== 0
-	AND $password==$potvrda)
+  AND $password==$potvrda)
 {
-	
+  
 $uploaddir='C:/xampp/htdocs/test/skola_informatike/slike/';
 $uploadfile=$_FILES["slika"]["name"];
-$novi=$uploaddir.$uploadfile;
+$novi=$uploaddir.date("ymdhs").$uploadfile;
 move_uploaded_file($_FILES["slika"]["tmp_name"], $novi);
 
 
@@ -158,8 +158,8 @@ echo '<div class="dobro">Podaci uspješno unijeti!</div>';
 
 else 
 {
-	echo '<b><div class="krivo">Niste dobro unijeli lozinku ili neko od traženih polja!</div></b>';
-}	
+  echo '<b><div class="krivo">Niste dobro unijeli lozinku ili neko od traženih polja!</div></b>';
+} 
 
 
 }// kraj if isset dugme
